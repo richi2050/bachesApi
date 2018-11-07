@@ -24,6 +24,15 @@ const bacheSchema = Schema({
 
 });
 
+const usuarioSchema = Schema({
+    bache: ObjectId,
+    Nombre: {type:String},
+    Correo: {type:String},
+    id: {type:String}
+
+});
+
 
 const Bache = mongoose.model('Bache', bacheSchema);
-module.exports = {Bache};
+const Usuario = mongoose.model('Usuario', usuarioSchema);
+module.exports = {Bache, Usuario};
