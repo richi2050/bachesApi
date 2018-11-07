@@ -23,3 +23,7 @@ const bacheSchema = Schema({
     comentario: {type:String}
 
 });
+
+
+const Bache = mongoose.model('Bache', bacheSchema);
+module.exports = {Bache};
