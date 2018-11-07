@@ -32,7 +32,7 @@ app.post('/api/v1/bache/', (req, res)=>{
 });
 
 // end pint list
-app.get('api/v1/bache/', (req, res)=>{
+app.get('/api/v1/bache/', (req, res)=>{
  Bache
     .find()
     .populate('Baches')
