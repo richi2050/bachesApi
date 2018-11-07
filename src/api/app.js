@@ -22,18 +22,18 @@ app.post('/api/v1/bache/', (req, res)=>{
         comentario: comentario
     });
     // Pedir a la base de datos que guarde el nuevo objeto en su respectiva colección
-    bacheNuevo.save( (error, nuevoDirector)=>{
+    bacheNuevo.save( (error, nuevoBache)=>{
         if (error) {
             res.status(400).send(error.message);
         } else {
-            res.status(201).send(nuevoDirector);
+            res.status(201).send(nuevoBache);
           }
         });
 });
 
 // end pint list
-app.get('api/v1/bache/', (req, res)=>{
- Bache
+app.get('/api/v1/bache/', (req, res)=>{
+    Bache
     .find()
     .populate('Baches')
     .exec()
@@ -59,6 +59,28 @@ app.get('/api/v1/bache/:id', (req, res)=>{
        });
 
 });
+
+//  // endpoint delete
+app.delete('/api/v1/bache/:id', (req, res)=> {
+    Bache
+    .findByIdAndDelete(req.params.id)
+    .exec()
+    .then( () => res.status(204).send({"mensaje": "Registro de Bache eliminado exitosamente"}))
+    .catch( error => res.status(404).send(error));
+});
+
+// // endpoint update
+
+app.create('/api/v1/bache/:id', (req, res)=> {
+    const {id} = req.params;
+           Bache
+           .findByIdAndUpdate( id, {$set: req.body}, {new: true})
+           .populate('baches')
+           .exec()
+           .then( bacheActualizado => res.status(200).send (bacheActualizado))
+           .catch( error => res.status(400).send(error));
+   
+   });
 
 
 
