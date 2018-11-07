@@ -6,7 +6,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (request, response)=>{
-    response.status(200).send('Estamos en la api !!!');
+    response.status(200).send('Estamos en la !! ....');
 });
 
 // end pint list
