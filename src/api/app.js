@@ -21,7 +21,6 @@ app.post('/api/v1/bache/', (req, res)=>{
         longitud: longitud,
         comentario: comentario
     });
-
     // Pedir a la base de datos que guarde el nuevo objeto en su respectiva colección
     bacheNuevo.save( (error, nuevoDirector)=>{
         if (error) {
@@ -38,9 +37,23 @@ app.get('', (req, res)=>{
 });
 //
 // // end pint id
-app.get('', (req, res)=>{
+app.get('/api/v1/bache/:id', (req, res)=>{
+  const {id} = req.params;
+  Bache.findById(id)
+       .exec()
+       .then(bache => res.status(200).send(bache))
+       .catch(error => {
+           error.name === 'CastError'
+           ? res.status(404).send({
+               "mensaje_servidor": "no fue posible hallar el bache con el id especificado",
+               "mensaje_mongodb":error
+           })
+           : res.status(404).send(error)
+       });
 
 });
+
+
 
 
 app.listen(3001, ()=>{
