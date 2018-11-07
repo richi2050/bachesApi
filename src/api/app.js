@@ -32,8 +32,15 @@ app.post('/api/v1/bache/', (req, res)=>{
 });
 
 // end pint list
-app.get('', (req, res)=>{
-
+app.get('api/v1/bache/', (req, res)=>{
+ Bache
+    .find()
+    .populate('Baches')
+    .exec()
+    .then(listaBaches =>{
+        res.status(200).send(listaBaches);
+    })
+    .catch ( error => res.status(400).send(error));
 });
 //
 // // end pint id
