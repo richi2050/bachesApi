@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/richi2050/bachesApi#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
   }
 }
