@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {Bache} = require('../basedatos/mongoController');
+var cors = require('cors');
 const app = express();
 
 
@@ -9,12 +10,12 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (request, response)=>{
+app.get('/',  cors(),(request, response)=>{
     response.status(200).send('Estamos en la !! ....');
 });
 
 // end pint post
-app.post('/api/v1/bache/', (req, res)=>{
+app.post('/api/v1/bache/', cors(), (req, res)=>{
   const {latitud,longitud,comentario} =  req.body;
   const bacheNuevo = Bache({
         latitud: latitud,
@@ -32,7 +33,7 @@ app.post('/api/v1/bache/', (req, res)=>{
 });
 
 // end pint list
-app.get('/api/v1/bache/', (req, res)=>{
+app.get('/api/v1/bache/',  cors(),(req, res)=>{
     Bache
     .find()
     .populate('Baches')
@@ -44,7 +45,7 @@ app.get('/api/v1/bache/', (req, res)=>{
 });
 //
 // // end pint id
-app.get('/api/v1/bache/:id', (req, res)=>{
+app.get('/api/v1/bache/:id',  cors(),(req, res)=>{
   const {id} = req.params;
   Bache.findById(id)
        .exec()
@@ -61,7 +62,7 @@ app.get('/api/v1/bache/:id', (req, res)=>{
 });
 
 //  // endpoint delete
-app.delete('/api/v1/bache/:id', (req, res)=> {
+app.delete('/api/v1/bache/:id',  cors(),(req, res)=> {
     Bache
     .findByIdAndDelete(req.params.id)
     .exec()
@@ -71,7 +72,7 @@ app.delete('/api/v1/bache/:id', (req, res)=> {
 
 // // endpoint update
 
-app.put('/api/v1/bache/:id', (req, res)=> {
+app.put('/api/v1/bache/:id',  cors(),(req, res)=> {
     const {id} = req.params;
            Bache
            .findByIdAndUpdate( id, {$set: req.body}, {new: true})
