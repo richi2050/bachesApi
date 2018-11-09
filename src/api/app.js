@@ -71,7 +71,7 @@ app.delete('/api/v1/bache/:id', (req, res)=> {
 
 // // endpoint update
 
-app.create('/api/v1/bache/:id', (req, res)=> {
+app.put('/api/v1/bache/:id', (req, res)=> {
     const {id} = req.params;
            Bache
            .findByIdAndUpdate( id, {$set: req.body}, {new: true})
@@ -79,10 +79,8 @@ app.create('/api/v1/bache/:id', (req, res)=> {
            .exec()
            .then( bacheActualizado => res.status(200).send (bacheActualizado))
            .catch( error => res.status(400).send(error));
-   
-   });
 
-
+});
 
 
 app.listen(port, ()=>{
