@@ -20,6 +20,10 @@
   "homepage": "https://github.com/richi2050/bachesApi#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+<<<<<<< HEAD
+=======
+    "cors": "^2.8.5",
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
     "express": "^4.16.4",
     "mongoose": "^5.3.10"
   }

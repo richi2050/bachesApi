@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {Bache} = require('../basedatos/mongoController');
+<<<<<<< HEAD
+=======
+var cors = require('cors');
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
 const app = express();
 
 
@@ -9,12 +13,20 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
 app.get('/', (request, response)=>{
+=======
+app.get('/',  cors(),(request, response)=>{
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
     response.status(200).send('Estamos en la !! ....');
 });
 
 // end pint post
+<<<<<<< HEAD
 app.post('/api/v1/bache/', (req, res)=>{
+=======
+app.post('/api/v1/bache/', cors(), (req, res)=>{
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
   const {latitud,longitud,comentario} =  req.body;
   const bacheNuevo = Bache({
         latitud: latitud,
@@ -32,7 +44,11 @@ app.post('/api/v1/bache/', (req, res)=>{
 });
 
 // end pint list
+<<<<<<< HEAD
 app.get('/api/v1/bache/', (req, res)=>{
+=======
+app.get('/api/v1/bache/',  cors(),(req, res)=>{
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
     Bache
     .find()
     .populate('Baches')
@@ -44,7 +60,11 @@ app.get('/api/v1/bache/', (req, res)=>{
 });
 //
 // // end pint id
+<<<<<<< HEAD
 app.get('/api/v1/bache/:id', (req, res)=>{
+=======
+app.get('/api/v1/bache/:id',  cors(),(req, res)=>{
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
   const {id} = req.params;
   Bache.findById(id)
        .exec()
@@ -61,7 +81,11 @@ app.get('/api/v1/bache/:id', (req, res)=>{
 });
 
 //  // endpoint delete
+<<<<<<< HEAD
 app.delete('/api/v1/bache/:id', (req, res)=> {
+=======
+app.delete('/api/v1/bache/:id',  cors(),(req, res)=> {
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
     Bache
     .findByIdAndDelete(req.params.id)
     .exec()
@@ -71,7 +95,11 @@ app.delete('/api/v1/bache/:id', (req, res)=> {
 
 // // endpoint update
 
+<<<<<<< HEAD
 app.put('/api/v1/bache/:id', (req, res)=> {
+=======
+app.put('/api/v1/bache/:id',  cors(),(req, res)=> {
+>>>>>>> d54ab9c3413f8f350f5a435060e2ab8b5357f304
     const {id} = req.params;
            Bache
            .findByIdAndUpdate( id, {$set: req.body}, {new: true})
