@@ -7,6 +7,11 @@ const app = express();
 
 const port = process.env.PORT || 3001;
 
+var corsOptions = {
+  origin: 'https://baches-app.herokuapp.com/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -15,7 +20,7 @@ app.get('/',  cors(),(request, response)=>{
 });
 
 // end pint post
-app.post('/api/v1/bache/', cors(), (req, res)=>{
+app.post('/api/v1/bache/', cors(corsOptions), (req, res)=>{
   const {latitud,longitud,comentario} =  req.body;
   const bacheNuevo = Bache({
         latitud: latitud,
